@@ -6,9 +6,9 @@ function HeroHome() {
   return (
     <section>
       <div className="relative flex justify-center" data-aos="zoom-y-out" data-aos-delay="450">
-        <img className="mx-auto" src={landingThumbnail} alt="Hero" />
+        <img className="w-full" src={landingThumbnail} alt="Hero" />
         <Link
-          to={'/nodes'} className="absolute bottom-10 flex text-black hover:text-blue-600 items-center transform -translate-y-1/2 bg-white rounded-full group p-4 shadow-lg" aria-controls="modal">
+          to={'/nodes'} className="absolute bottom-32 flex text-black hover:text-blue-600 items-center transform -translate-y-1/2 bg-white rounded-full group p-4 shadow-lg" aria-controls="modal">
           <span className="mx-6">Book Now</span>
         </Link>
       </div>
