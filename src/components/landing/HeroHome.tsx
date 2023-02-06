@@ -1,23 +1,17 @@
 import React from 'react';
-// import { landingThumbnail } from '../../assets/images';
+import { landingThumbnail } from '../../assets/images';
 import { Link } from 'react-router-dom';
 
 function HeroHome() {
   return (
-    <section className="gradient">
-      <div className="absolute w-full h-full flex justify-end items-end">
-        <div className="flex w-full items-start justify-center mb-48">
-          <div className="flex items-center justify-center bg-red-400 px-10 py-2 rounded-full">
-            <Link
-              to={'/nodes'}
-              className="font-medium text-white hover:text-blue-600 flex items-center transition duration-150 ease-in-out"
-            >
-              Book Now
-            </Link>
-          </div>
-        </div>
+    <section>
+      <div className="relative flex justify-center" data-aos="zoom-y-out" data-aos-delay="450">
+        <img className="mx-auto" src={landingThumbnail} alt="Hero" />
+        <Link
+          to={'/nodes'} className="absolute bottom-10 flex text-black hover:text-blue-600 items-center transform -translate-y-1/2 bg-white rounded-full group p-4 shadow-lg" aria-controls="modal">
+          <span className="mx-6">Book Now</span>
+        </Link>
       </div>
-      {/* <img className="w-screen h-screen" src={landingThumbnail} alt="Landing Image" /> */}
     </section>
   );
 }
