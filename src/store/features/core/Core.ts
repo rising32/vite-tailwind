@@ -3,13 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type AuthMode = 'REGISTER' | 'LOGIN';
 export type CurrentUser = {
   id: string;
-  username: string;
-  profile: {
-    id: string;
-    thumbnail: string | null;
-    display_name: string;
-  };
+  firstName: string;
+  lastName: string;
   email: string;
+  token: string;
 };
 
 export interface CoreState {
@@ -73,7 +70,7 @@ export const coreSlice = createSlice({
   },
 });
 
-export const { setLayer, showAuthModal, changeAuthModal, closeAuthModal, openPopUp } =
+export const { setLayer, setUser, showAuthModal, changeAuthModal, closeAuthModal, openPopUp } =
   coreSlice.actions;
 
 export default coreSlice.reducer;

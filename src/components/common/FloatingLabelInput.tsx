@@ -11,6 +11,7 @@ export interface FloatingLabelInputProps extends InputHTMLAttributes<HTMLInputEl
   showRuleText?: boolean;
   ruleText?: string;
   containerClassName?: string;
+  fullRounded?: boolean;
 }
 
 type InputValueState = 'valid' | 'invalid' | 'error' | 'empty';
@@ -24,6 +25,7 @@ function FloatingLabelInput({
   showRuleText = false,
   ruleText = 'Can include letters, numbers and underscores',
   containerClassName = 'w-full',
+  fullRounded = true,
   ...rest
 }: FloatingLabelInputProps) {
   const [inputValue, setInputValue] = useState('');
@@ -63,17 +65,17 @@ function FloatingLabelInput({
   };
 
   const mainBlur =
-    'relative h-16 border-solid border-2 border-gray-200 rounded-full flex items-center px-8' +
+    'relative h-16 border-solid border-2 border-gray-200 flex items-center px-8' +
     ' ' +
-    containerClassName;
+    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFInvalid =
-    'relative h-16 border-solid border-2 border-red-700 rounded-full flex items-center px-8' +
+    'relative h-16 border-solid border-2 border-red-700 flex items-center px-8' +
     ' ' +
-    containerClassName;
+    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFValid =
-    'relative h-16 border-solid border-2 border-blue-500 rounded-full flex items-center px-8' +
+    'relative h-16 border-solid border-2 border-blue-500 flex items-center px-8' +
     ' ' +
-    containerClassName;
+    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
 
   const labelBlur = 'text-2xl';
   const lableFocusInvalid = 'text-base bg-white px-1 text-red-700';
@@ -110,7 +112,6 @@ function FloatingLabelInput({
         <input
           ref={inputRef}
           className="text-2xl h-full w-full focus:outline-none"
-          name={label}
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={inputValue}

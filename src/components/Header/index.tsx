@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header className="fixed w-full z-30 bg-black shadow-lg">
-      <div className="max-w-6xl mx-auto px-5 sm:px-6">
+      <div className="w-full px-12">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex-shrink-0 mr-4">
             <Link to="/" className="block" aria-label="Cruip">
@@ -58,7 +58,7 @@ const Header = () => {
                 <li>
                   <Link to={'/accounts'} className="text-white hover:text-blue-600 flex items-center">
                     <img className="h-10 w-10 rounded-full mr-4" src={avatarThumbnail} alt="Nav" />
-                    <p>VanHung Hoang</p>
+                    <p>{user.firstName + user.lastName}</p>
                   </Link>
                 </li>
               )}

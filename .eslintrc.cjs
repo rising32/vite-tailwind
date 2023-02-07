@@ -25,6 +25,17 @@ module.exports = {
         '@typescript-eslint',
         'prettier'
     ],
+    'settings': {
+        'react': {
+          'version': 'detect',
+        },
+        'import/resolver': {
+          'node': {
+            'paths': ['src'],
+            'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+          },
+        },
+    },
     'rules': {
         'prettier/prettier': ['error', { endOfLine: 'auto' }],
         'indent': [
