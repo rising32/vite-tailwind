@@ -84,9 +84,9 @@ function FloatingLabelInput({
     `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
 
   const labelBlur = 'text-2xl';
-  const lableFocusInvalid = 'text-base bg-white px-1 text-red-700';
-  const labelFocusValid = 'text-base bg-white px-1 text-blue-500';
-  const labelUnfocusValid = 'text-base bg-white px-1 text-black';
+  const lableFocusInvalid = 'text-base bg-white rounded-full px-2 text-red-700';
+  const labelFocusValid = 'text-base bg-white rounded-full px-2 text-blue-500';
+  const labelUnfocusValid = 'text-base bg-white rounded-full px-2 text-black';
 
   return (
     <div>
@@ -117,7 +117,7 @@ function FloatingLabelInput({
         </animated.div>
         <input
           ref={inputRef}
-          className="text-2xl h-full w-full focus:outline-none"
+          className="text-2xl h-full w-full focus:outline-none bg-transparent"
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={inputValue}

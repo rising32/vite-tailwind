@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { rametronNodeThumbnail } from '../../assets/images';
 import Stripe from '../../components/pay/Stripe';
 function StripePayment() {
-  const [step, setStep] = useState(0);
-
   return (
     <main className="flex-grow pt-16 md:pt-20 bg-[#212020] text-white">
       <div className="flex flex-row mx-12 my-24">
@@ -36,7 +34,7 @@ function StripePayment() {
           </div>
         </div>
         <div className="w-2/3">
-          <Stripe amount={1500} step={step} />
+          <Stripe amount={1500} />
         </div>
       </div>
     </main>
