@@ -83,8 +83,8 @@ const AccountLayout = () => {
     },
   ];
   return (
-    <div className="bg-white">
-      <div className="mx-56 mt-16">
+    <main className="flex-grow pt-16 md:pt-20">
+      <div className="mx-12 md:mx-24 2xl:mx-36 mt-16">
         <p className="text-5xl font-bold">Settings</p>
         <p className="text-xl mt-2 mb-6">Your rametron settings are synced across all products</p>
         <div className="flex flex-row">
@@ -124,7 +124,7 @@ const AccountLayout = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
