@@ -1,25 +1,23 @@
-import { useSpring, animated } from "@react-spring/web";
-import React, { useEffect, useState } from "react";
-import { UseFormRegister, Control, useWatch } from "react-hook-form";
-import useMeasure from "react-use-measure";
-import { FormData } from "../auth/LoginForm";
+import { useSpring, animated } from '@react-spring/web';
+import React, { useEffect, useState } from 'react';
+import { UseFormRegister, Control, useWatch } from 'react-hook-form';
+import useMeasure from 'react-use-measure';
+import { FormData } from '../auth/LoginForm';
 
 export interface FloatingLabelInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    register: UseFormRegister<FormData>,
-    control: Control<FormData>,
-    label: string,
-    formDataType: keyof FormData;
-    value?: string;
-    onChangeInputValue?: (name: string, value: string) => void;
-    handleBlur?: React.FocusEventHandler<HTMLInputElement>;
-    showErrorText?: boolean;
-    errorText?: string;
-    showRuleText?: boolean;
-    ruleText?: string;
-    containerClassName?: string;
-    fullRounded?: boolean;
+  register: UseFormRegister<FormData>;
+  control: Control<FormData>;
+  label: string;
+  formDataType: keyof FormData;
+  handleBlur?: React.FocusEventHandler<HTMLInputElement>;
+  showErrorText?: boolean;
+  errorText?: string;
+  showRuleText?: boolean;
+  ruleText?: string;
+  containerClassName?: string;
+  fullRounded?: boolean;
 }
-  
+
 type InputValueState = 'valid' | 'invalid' | 'error' | 'empty';
 
 function FloatingInput({
@@ -27,8 +25,6 @@ function FloatingInput({
   control,
   label,
   formDataType,
-  value = '',
-  onChangeInputValue,
   handleBlur,
   showErrorText = false,
   errorText = 'This field is required',
@@ -55,7 +51,7 @@ function FloatingInput({
       setInputValueState('valid');
     }
   }, [inputValue]);
-  
+
   const [labelRef, { height: viewHeight }] = useMeasure();
   const props = useSpring({ top: isFocused || (!isFocused && inputValue) ? -viewHeight / 2 : 0 });
 
@@ -75,15 +71,21 @@ function FloatingInput({
   const mainBlur =
     'relative h-16 border-solid border-2 border-gray-200 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFInvalid =
     'relative h-16 border-solid border-2 border-red-700 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFValid =
     'relative h-16 border-solid border-2 border-blue-500 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
 
   const labelBlur = 'text-2xl';
   const lableFocusInvalid = 'text-base bg-white px-1 text-red-700';

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import FloatingLabelInput from '../common/FloatingLabelInput';
 import { useAppDispatch } from '../../store/hooks';
 import { changeAuthModal, closeAuthModal, setUser } from '../../store/features/core/Core';
-import axios from 'axios';
 import { onLogin } from '../../libs/apis/auth';
 
 function LoginForm() {
@@ -19,32 +18,31 @@ function LoginForm() {
     setData({ ...data, [name.toLowerCase()]: value });
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+    event.preventDefault();
 
-		try {
+    try {
       const response = await onLogin({
         email: data.email,
         password: data.password,
       });
       console.log(response);
-      dispatch(setUser({
-        id: response.data.user._id,
-        firstName: response.data.user.firstName,
-        lastName: response.data.user.lastName,
-        email: response.data.user.email,
-        token: response.data.token,
-      }))
+      dispatch(
+        setUser({
+          id: response.data.user._id,
+          firstName: response.data.user.firstName,
+          lastName: response.data.user.lastName,
+          email: response.data.user.email,
+          token: response.data.token,
+        }),
+      );
       dispatch(closeAuthModal());
-		} catch (error: any) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
-	};
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        setError(error.response.data.message);
+      }
+    }
+  };
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
@@ -74,7 +72,7 @@ function LoginForm() {
             <p className="text-md text-red-700">{error}</p>
           </div>
         ) : null}
-        <button type='submit' className="flex w-full py-3 justify-center bg-blue-600 rounded-full">
+        <button type="submit" className="flex w-full py-3 justify-center bg-blue-600 rounded-full">
           <p className="text-white text-xl font-medium">Login</p>
         </button>
       </form>

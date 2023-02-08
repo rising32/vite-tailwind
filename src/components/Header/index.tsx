@@ -56,7 +56,10 @@ const Header = () => {
                 </>
               ) : (
                 <li>
-                  <Link to={'/accounts'} className="text-white hover:text-blue-600 flex items-center">
+                  <Link
+                    to={'/accounts'}
+                    className="text-white hover:text-blue-600 flex items-center"
+                  >
                     <img className="h-10 w-10 rounded-full mr-4" src={avatarThumbnail} alt="Nav" />
                     <p>{user.firstName + user.lastName}</p>
                   </Link>

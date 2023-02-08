@@ -67,15 +67,21 @@ function FloatingLabelInput({
   const mainBlur =
     'relative h-16 border-solid border-2 border-gray-200 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFInvalid =
     'relative h-16 border-solid border-2 border-red-700 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
   const mainFValid =
     'relative h-16 border-solid border-2 border-blue-500 flex items-center px-8' +
     ' ' +
-    containerClassName + ' ' + `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
+    containerClassName +
+    ' ' +
+    `${fullRounded ? 'rounded-full' : 'rounded-md'}`;
 
   const labelBlur = 'text-2xl';
   const lableFocusInvalid = 'text-base bg-white px-1 text-red-700';

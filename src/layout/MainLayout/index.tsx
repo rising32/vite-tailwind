@@ -12,12 +12,12 @@ const MainLayout = () => {
       disable: 'phone',
       duration: 700,
       easing: 'ease-out-cubic',
-    })
-  })
+    });
+  });
   useEffect(() => {
-    mainRef.current?.scrollIntoView({'behavior': 'auto'});
-    window.scroll({ top: 0 })
-    mainRef.current?.scrollIntoView({'behavior': 'smooth'});
+    mainRef.current?.scrollIntoView({ behavior: 'auto' });
+    window.scroll({ top: 0 });
+    mainRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [location.pathname]);
   return (
     <div ref={mainRef} className="flex flex-col min-h-screen overflow-hidden">

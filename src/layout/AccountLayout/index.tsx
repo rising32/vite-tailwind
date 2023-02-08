@@ -102,7 +102,9 @@ const AccountLayout = () => {
                           <NavLink
                             to={item.to}
                             className={({ isActive }) => {
-                              return `flex ${isActive ? 'bg-blue-200 text-blue-700' : 'text-black'}`;
+                              return `flex ${
+                                isActive ? 'bg-blue-200 text-blue-700' : 'text-black'
+                              }`;
                             }}
                           >
                             <div className="px-4 font-medium py-2">
