@@ -31,8 +31,14 @@ export const onLogin = async (form: LoginFormData) => {
   return response.data;
 };
 export const onRegister = async (form: RegisterFormData) => {
-  const response = await apiClient.post<AuthResponse>('login', {
+  const response = await apiClient.post<AuthResponse>('register', {
     ...form,
+  });
+  return response.data;
+};
+export const onChangeDisplayName = async (displayName: string) => {
+  const response = await apiClient.post<AuthResponse>('updatename', {
+    displayName,
   });
   return response.data;
 };

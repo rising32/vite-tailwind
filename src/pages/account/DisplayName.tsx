@@ -9,13 +9,43 @@ function DisplayName() {
     onChangeDisplayName(value);
   };
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    console.log(displayName);
+    try {
+      // const response = await onRegister({
+      //   firstName: data.firstName,
+      //   lastName: data.lastName,
+      //   email: data.email,
+      //   password: data.password,
+      // });
+      // console.log(response);
+      // dispatch(
+      //   setUser({
+      //     id: response.data.user._id,
+      //     firstName: response.data.user.firstName,
+      //     lastName: response.data.user.lastName,
+      //     email: response.data.user.email,
+      //     token: response.data.token,
+      //   }),
+      // );
+      // dispatch(closeAuthModal());
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      // if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+      //   setError(error.response.data.message);
+      // }
+    }
+  };
+
   return (
     <div className="flex flex-col w-full p-6">
       <SubTitle
         mainTitle="Display Name"
         subTitle="Your display name will be seen by friends. Have fun with it!"
       />
-      <div className="flex flex-col">
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <FloatingLabelInput
           label="Display Name"
           type="text"
@@ -35,7 +65,7 @@ function DisplayName() {
             <p className="text-white">Confirm</p>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

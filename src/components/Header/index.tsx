@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { avatarThumbnail, discordThumbnail, logoGif } from '../../assets/images';
 import useHeader from './hooks/useHeader';
+import AuthView from './AuthView';
 
 const Header = () => {
-  const { user, onResigerClick, onLoginClick } = useHeader();
+  const { user } = useHeader();
 
   return (
     <header className="fixed w-full z-30 bg-black shadow-lg">
@@ -36,24 +37,7 @@ const Header = () => {
                 <div className="bg-white h-10" style={{ width: 1 }} />
               </li>
               {!user ? (
-                <>
-                  <li>
-                    <button
-                      className="flex justify-center w-32 py-1 text-white rounded-full bg-transparent border-solid border-2 border-sky-500"
-                      onClick={onResigerClick}
-                    >
-                      <p>Register</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="flex justify-center w-32 py-1 text-white rounded-full bg-sky-500"
-                      onClick={onLoginClick}
-                    >
-                      <p>Login</p>
-                    </button>
-                  </li>
-                </>
+                <AuthView />
               ) : (
                 <li>
                   <Link

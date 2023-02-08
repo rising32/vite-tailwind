@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { UseFormRegister, Control, useWatch } from 'react-hook-form';
 import useMeasure from 'react-use-measure';
 import { FormData } from '../auth/LoginForm';
+import _ from 'underscore';
 
 export interface FloatingLabelInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<FormData>;
   control: Control<FormData>;
   label: string;
   formDataType: keyof FormData;
-  handleBlur?: React.FocusEventHandler<HTMLInputElement>;
+  // handleBlur?: React.FocusEventHandler<HTMLInputElement>;
   showErrorText?: boolean;
   errorText?: string;
   showRuleText?: boolean;
@@ -25,7 +26,7 @@ function FloatingInput({
   control,
   label,
   formDataType,
-  handleBlur,
+  // handleBlur,
   showErrorText = false,
   errorText = 'This field is required',
   showRuleText = false,
@@ -59,9 +60,9 @@ function FloatingInput({
     setFocused(true);
     setIsFirsted(false);
   };
-  // const handleBlur = () => {
-  //   setFocused(false);
-  // };
+  const handleBlur = () => {
+    setFocused(false);
+  };
   const activeFocus = () => {
     if (!isFocused) {
       inputRef.current?.focus();
@@ -92,6 +93,8 @@ function FloatingInput({
   const labelFocusValid = 'text-base bg-white px-1 text-blue-500';
   const labelUnfocusValid = 'text-base bg-white px-1 text-black';
 
+  const registerProps = _.omit(register(formDataType, { required: true }), ['onBlur']);
+
   return (
     <div>
       <div
@@ -120,10 +123,10 @@ function FloatingInput({
           )}
         </animated.div>
         <input
-          // ref={inputRef}
           className="text-2xl h-full w-full focus:outline-none"
           onFocus={handleFocus}
-          {...register(formDataType, { required: true })}
+          onBlur={handleBlur}
+          {...registerProps}
           {...rest}
         />
       </div>

@@ -3,6 +3,7 @@ import FloatingLabelInput from '../common/FloatingLabelInput';
 import { useAppDispatch } from '../../store/hooks';
 import { changeAuthModal, closeAuthModal, setUser } from '../../store/features/core/Core';
 import { onRegister } from '../../libs/apis/auth';
+import useAuth from './hooks/useAuth';
 
 function SignUpForm() {
   const [data, setData] = useState({
@@ -22,34 +23,34 @@ function SignUpForm() {
   const goToLogin = () => {
     dispatch(changeAuthModal('LOGIN'));
   };
+  const { onSignUpValidation } = useAuth();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log(data);
-    try {
-      const response = await onRegister({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: data.password,
-      });
-      console.log(response);
-      dispatch(
-        setUser({
-          id: response.data.user._id,
-          firstName: response.data.user.firstName,
-          lastName: response.data.user.lastName,
-          email: response.data.user.email,
-          token: response.data.token,
-        }),
-      );
-      dispatch(closeAuthModal());
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setError(error.response.data.message);
-      }
+    if (onSignUpValidation(data)) {
+      setError(onSignUpValidation(data));
+      return;
     }
+
+    setError('');
+
+    const response = await onRegister({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+    });
+    console.log(response);
+    dispatch(
+      setUser({
+        id: response.data.user._id,
+        firstName: response.data.user.firstName,
+        lastName: response.data.user.lastName,
+        email: response.data.user.email,
+        token: response.data.token,
+      }),
+    );
+    dispatch(closeAuthModal());
   };
 
   return (
@@ -57,7 +58,7 @@ function SignUpForm() {
       <p className="text-xl font-bold mt-8">Create Account</p>
 
       <form onSubmit={handleSubmit} className="w-full flex flex-col items-center justify-center">
-        <div className="grid gap-8 grid-cols-1 my-12 w-full">
+        <div className="grid gap-8 grid-cols-1 mt-12 mb-4 w-full">
           <FloatingLabelInput
             label="First Name"
             name="firstName"
@@ -83,7 +84,7 @@ function SignUpForm() {
             fullRounded={false}
           />
           <FloatingLabelInput
-            label="Passwordd"
+            label="Password"
             name="password"
             type="password"
             value={data.password}
@@ -92,7 +93,7 @@ function SignUpForm() {
           />
         </div>
         {error ? (
-          <div>
+          <div className="mb-4">
             <p className="text-md text-red-700">{error}</p>
           </div>
         ) : null}

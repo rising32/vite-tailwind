@@ -3,6 +3,9 @@ import { rametronNodeThumbnail } from '../assets/images';
 import Select from 'react-select';
 import ArrowDownSvg from '../assets/svgs/arrow-down.svg';
 import ArrowUpSvg from '../assets/svgs/arrow-up.svg';
+import { useAppSelector } from '../store/hooks';
+import AuthView from '../components/Header/AuthView';
+import { Link } from 'react-router-dom';
 
 interface ColourOption {
   readonly value: string;
@@ -12,6 +15,7 @@ interface ColourOption {
   readonly isDisabled?: boolean;
 }
 function NodesPage() {
+  const user = useAppSelector((state) => state.core.user);
   const [quantity, setQuantity] = useState(1);
 
   const IncreaseQuantity = () => {
@@ -29,9 +33,9 @@ function NodesPage() {
     { value: 'usd', label: 'USD', color: '#5243AA' },
   ];
   return (
-    <div className="bg-white">
-      <div className="flex flex-row mx-56 mt-32">
-        <div className="border-solid border-2 border-black rounded-3xl mr-16 p-6 flex flex-col items-center justify-center w-3/4">
+    <main className="flex-grow pt-16 md:pt-20">
+      <div className="flex flex-row mx-12 md:mx-32 my-32">
+        <div className="border-solid border-2 border-black rounded-3xl mr-16 p-6 flex flex-col items-center justify-center w-2/3">
           <p className="text-xl font-bold">Rametron NODE Licence</p>
           <img className="w-full mt-4 mb-1" src={rametronNodeThumbnail} />
           <p className="text-lg">License(s) required to operate Rametron Nodes.</p>
@@ -59,10 +63,10 @@ function NodesPage() {
             </div>
           </div>
         </div>
-        <div className="w-1/4">
+        <div className="w-1/3">
           <div className="flex flex-col border-solid border-2 border-black rounded-xl p-6">
             <div className="pb-4">
-              <p className="text-xl font-bold">Price:4500</p>
+              <p className="text-xl font-bold">Price:{4500 * quantity}</p>
             </div>
             <div className="pb-4">
               <p className="text-sm">Payment Method</p>
@@ -83,13 +87,25 @@ function NodesPage() {
                 <img src={ArrowUpSvg} className="w-4 h-4" />
               </div>
             </div>
-            <div className="flex items-center justify-center py-2 mt-2 rounded-md bg-blue-600 hover:bg-green-700">
-              <p className="text-lg text-white">Place Order</p>
-            </div>
+            {user ? (
+              <Link
+                to={'/nodes/stripe'}
+                className="flex items-center justify-center py-2 mt-2 rounded-md bg-blue-600 hover:bg-green-700"
+              >
+                <p className="text-lg text-white">Place Order</p>
+              </Link>
+            ) : (
+              <div>
+                <div className="my-4 p-2 border-dashed border-2 border-sky-500 rounded-md">
+                  <p>Please log in or register to place your order.</p>
+                </div>
+                <AuthView />
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

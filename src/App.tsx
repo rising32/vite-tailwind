@@ -4,6 +4,7 @@ import MainLayout from './layout/MainLayout';
 import ErrorPage from './pages/ErrorPage';
 import LandingPage from './pages/LandingPage';
 import NodesPage from './pages/NodesPage';
+import StripePayment from './pages/payment/StripePayment';
 import AccountLayout from './layout/AccountLayout';
 import ProfilePicture from './pages/account/ProfilePicture';
 import DisplayName from './pages/account/DisplayName';
@@ -19,6 +20,7 @@ import TransferCode from './pages/account/TransferCode';
 import PrivateKey from './pages/account/PrivateKey';
 import DeleteAccount from './pages/account/DeleteAccount';
 import Core from './layout/Core';
+import Modal from 'react-modal';
 
 const AppRoute = createBrowserRouter([
   {
@@ -33,6 +35,10 @@ const AppRoute = createBrowserRouter([
       {
         path: '/nodes',
         element: <NodesPage />,
+      },
+      {
+        path: '/nodes/stripe',
+        element: <StripePayment />,
       },
       {
         path: '/accounts',
@@ -99,6 +105,8 @@ const AppRoute = createBrowserRouter([
     ],
   },
 ]);
+
+Modal.setAppElement('#root');
 
 function App() {
   return (
